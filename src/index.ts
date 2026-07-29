@@ -9,3 +9,6 @@ Version: 0.1.0
 
 Loading...
 `);
+import { startApp } from "./core/app";
+
+startApp();
