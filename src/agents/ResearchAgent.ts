@@ -1,5 +1,5 @@
 import { AIProvider } from "../providers/ai/AIProvider";
-import { buildResearchPrompt } from "../prompts/research";
+import { buildResearchPrompt } from "../prompts/research.js";
 
 export class ResearchAgent {
   constructor(private ai: AIProvider) {}

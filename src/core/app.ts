@@ -2,6 +2,7 @@ import { Logger } from "./logger";
 import { showMainMenu } from "../cli/menu";
 import { MockProvider } from "../providers/ai/MockProvider"; // or GeminiProvider later
 import { ResearchAgent } from "../agents/ResearchAgent";
+import { askTopic } from "../cli/input";
 
 
 export async function startApp() {
@@ -13,10 +14,15 @@ export async function startApp() {
   const choice = await showMainMenu();
 
   switch (choice) {
-    case "research": {
-      const response = await researchAgent.research(
-        "Artificial Intelligence"
-      );
+  case "research": {
+  const topic = await askTopic();
+
+  const response = await researchAgent.research(topic);
+
+  Logger.success(response);
+
+  break;
+
 
       Logger.success(response);
       break;
