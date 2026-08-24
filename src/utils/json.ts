@@ -1,7 +1,13 @@
+import { validateResearchResult } from "./validation";
+
 export function parseJSON<T>(text: string): T {
+  let data: unknown;
+
   try {
-    return JSON.parse(text) as T;
+    data = JSON.parse(text);
   } catch {
     throw new Error("AI returned invalid JSON.");
   }
+
+  return validateResearchResult(data) as T;
 }
