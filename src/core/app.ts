@@ -21,7 +21,7 @@ export async function startApp() {
       Logger.success(`Research results for: ${response.topic}`);
 
       response.ideas.forEach((idea, index) => {
-        Logger.info(`${index + 1}. ${idea.title}`);
+        Logger.info(`${index + 1}. [${idea.grade}] ${idea.title}`);
         Logger.info(idea.description);
       });
 

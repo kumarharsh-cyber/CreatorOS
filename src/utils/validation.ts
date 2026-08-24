@@ -1,5 +1,7 @@
 import { ResearchResult } from "../models/ResearchResult";
 
+const validGrades = ["A", "B", "C", "D", "F"];
+
 export function validateResearchResult(data: unknown): ResearchResult {
   if (typeof data !== "object" || data === null || Array.isArray(data)) {
     throw new Error("Research result must be an object.");
@@ -29,7 +31,16 @@ export function validateResearchResult(data: unknown): ResearchResult {
     if (typeof researchIdea.description !== "string") {
       throw new Error("Research idea description must be a string.");
     }
+
+    if (
+      typeof researchIdea.grade !== "string" ||
+      !validGrades.includes(researchIdea.grade)
+    ) {
+      throw new Error(
+        "Research idea grade must be one of: A, B, C, D, F."
+      );
+    }
   }
 
-return result as unknown as ResearchResult;
+  return result as unknown as ResearchResult;
 }

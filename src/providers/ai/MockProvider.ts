@@ -7,11 +7,12 @@ export class MockProvider implements AIProvider {
       .map((line) => line.trim())
       .filter(Boolean);
 
-   const topicIndex = lines.findIndex(
-  (line) =>
-    line.toLowerCase() ===
-    "generate exactly 5 youtube shorts ideas about:"
-);
+    const topicIndex = lines.findIndex(
+      (line) =>
+        line.toLowerCase() ===
+        "generate exactly 5 youtube shorts ideas about:"
+    );
+
     const topic =
       topicIndex !== -1 && lines[topicIndex + 1]
         ? lines[topicIndex + 1]
@@ -22,23 +23,28 @@ export class MockProvider implements AIProvider {
       ideas: [
         {
           title: `5 Things About ${topic}`,
-          description: `Discover five interesting things about ${topic} that most people don't know.`
+          description: `Discover five interesting things about ${topic} that most people don't know.`,
+          grade: "A"
         },
         {
           title: `${topic}: What Nobody Tells You`,
-          description: `Explore some surprising facts and insights about ${topic}.`
+          description: `Explore some surprising facts and insights about ${topic}.`,
+          grade: "B"
         },
         {
           title: `The Future of ${topic}`,
-          description: `A quick look at how ${topic} could evolve and affect our future.`
+          description: `A quick look at how ${topic} could evolve and affect our future.`,
+          grade: "A"
         },
         {
           title: `${topic} Explained in 60 Seconds`,
-          description: `A fast and simple explanation of the most important ideas behind ${topic}.`
+          description: `A fast and simple explanation of the most important ideas behind ${topic}.`,
+          grade: "B"
         },
         {
           title: `5 Surprising Facts About ${topic}`,
-          description: `Five fascinating facts about ${topic} that could make a great Shorts video.`
+          description: `Five fascinating facts about ${topic} that could make a great Shorts video.`,
+          grade: "A"
         }
       ]
     });
