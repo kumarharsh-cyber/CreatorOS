@@ -1,9 +1,8 @@
 import { Logger } from "./logger";
 import { showMainMenu } from "../cli/menu";
-import { MockProvider } from "../providers/ai/MockProvider"; // or GeminiProvider later
+import { MockProvider } from "../providers/ai/MockProvider";
 import { ResearchAgent } from "../agents/ResearchAgent";
 import { askTopic } from "../cli/input";
-
 
 export async function startApp() {
   Logger.success("CreatorOS started successfully.");
@@ -14,17 +13,18 @@ export async function startApp() {
   const choice = await showMainMenu();
 
   switch (choice) {
-  case "research": {
-  const topic = await askTopic();
+    case "research": {
+      const topic = await askTopic();
 
-  const response = await researchAgent.research(topic);
+      const response = await researchAgent.research(topic);
 
-  Logger.success(response);
+      Logger.success(`Research results for: ${response.topic}`);
 
-  break;
+      response.ideas.forEach((idea, index) => {
+        Logger.info(`${index + 1}. ${idea.title}`);
+        Logger.info(idea.description);
+      });
 
-
-      Logger.success(response);
       break;
     }
 

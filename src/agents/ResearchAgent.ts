@@ -1,12 +1,16 @@
 import { AIProvider } from "../providers/ai/AIProvider";
-import { buildResearchPrompt } from "../prompts/research.js";
+import { buildResearchPrompt } from "../prompts/research";
+import { parseJSON } from "../utils/json";
+import { ResearchResult } from "../models/ResearchResult";
 
 export class ResearchAgent {
   constructor(private ai: AIProvider) {}
 
-  async research(topic: string): Promise<string> {
+  async research(topic: string): Promise<ResearchResult> {
     const prompt = buildResearchPrompt(topic);
 
-    return await this.ai.generate(prompt);
+    const response = await this.ai.generate(prompt);
+
+    return parseJSON<ResearchResult>(response);
   }
 }
